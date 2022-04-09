@@ -1,0 +1,14 @@
+on:
+  schedule:
+    - cron: '0 13 * * *' # will run at 03:00 UTC
+
+jobs:
+  ping_url:
+    runs-on: ubuntu-latest
+    name: Ping URL
+    steps:
+      - name: Check the URL
+        id: ping
+        uses: soul-wish/ping-url-javascript-action@v1.1
+        with:
+          url: 'https://api.netlify.com/build_hooks/62516fbc11c775057106f213'
