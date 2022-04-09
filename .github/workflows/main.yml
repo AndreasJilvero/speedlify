@@ -4,7 +4,7 @@ name: Trigger Site Rebuild on a CRON Schedule
 on:
   schedule:
     # Runs "at 13:00 UTC every day" (see https://crontab.guru)
-    - cron: '0 13 * * *'
+    - cron: '*/5 * * * *'
 jobs:
   build:
     name: Trigger Site Rebuild
