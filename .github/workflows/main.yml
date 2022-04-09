@@ -1,14 +1,15 @@
+# .github/workflows/scheduled-builds.yml
+name: Trigger Site Rebuild on a CRON Schedule
+
 on:
   schedule:
-    - cron: '0 13 * * *' # will run at 03:00 UTC
-
+    # Runs "at 13:00 UTC every day" (see https://crontab.guru)
+    - cron: '0 13 * * *'
 jobs:
-  ping_url:
+  build:
+    name: Trigger Site Rebuild
     runs-on: ubuntu-latest
-    name: Ping URL
     steps:
-      - name: Check the URL
-        id: ping
-        uses: soul-wish/ping-url-javascript-action@v1.1
-        with:
-          url: 'https://api.netlify.com/build_hooks/62516fbc11c775057106f213'
+      - name: cURL request
+        # Hit the webhook endpoint to rebuild  from the "main" branch
+        run: curl -X POST -d {} ${{ secrets.BUILDHOOK }}
